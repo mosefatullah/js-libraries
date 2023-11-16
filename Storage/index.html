@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+</head>
+
+<body>
+    <script type="module">
+        import storage from "./storage.js";
+        let st = storage;
+
+        // st("users2", "i").set({});
+
+        st("contact2", "i").set({
+            table: "users",
+            index: [
+                ["uid", true],
+                ["name", false],
+            ],
+        });
+
+        st("contact2", "i").set({
+            table: "users",
+            value: { name: "Karem", uid: 30546 },
+        });
+
+        st("contact2", "i").set({
+            table: "users",
+            value: { name: "Rahman", uid: 144520 },
+        });
+
+        st("contact2", "i").set({
+            table: "users",
+            value: { name: "Ajijuuu", uid: 305456 },
+        });
+
+    </script>
+</body>
+
+</html>

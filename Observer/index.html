@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button class="disconnect">Disconnect</button>
+    <button class="connect">Connect</button>
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint aut sequi reprehenderit sit. Excepturi placeat
+        debitis corrupti magni vero quisquam illum alias quia blanditiis nostrum? Nisi dolorum officia molestiae
+        molestias? Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, vitae nemo! Omnis maiores rerum, ab et
+        quasi voluptatem voluptatum iure placeat tempore, sequi unde. Tenetur delectus repudiandae repellendus!
+        Reprehenderit perferendis cupiditate esse molestiae, voluptas error tempora pariatur eius temporibus reiciendis
+        voluptatem, vitae maxime similique aliquid laboriosam nobis? Illum repellat molestiae, illo ipsam architecto qui
+        ipsum totam unde rem voluptatibus, iste deleniti ipsa! Eligendi deserunt sunt, dolore earum eaque quo
+        voluptatibus non in optio enim error, perspiciatis sed totam vitae et nesciunt consequuntur voluptatem odio?
+        Aspernatur quasi veritatis, vero magni necessitatibus molestias sequi numquam odio tenetur minus labore
+        laudantium excepturi aliquam incidunt ipsam maiores assumenda suscipit adipisci voluptatum soluta dolore ullam?
+        Magnam sequi ad modi ratione officia, quibusdam nulla? Beatae vero voluptate doloribus sequi obcaecati eum et.
+        Aperiam iure animi, unde quasi laborum natus impedit tempore excepturi amet cumque illo modi saepe culpa
+        perferendis ab minima aspernatur ullam explicabo repellat odio eligendi pariatur. Est sapiente praesentium ut
+        ullam nulla. Enim tempora, aliquam delectus officiis earum at cumque exercitationem odit pariatur quis
+        laboriosam nisi unde obcaecati fugit, nostrum vero perferendis placeat dignissimos sunt impedit? Minima
+        doloremque fugiat eum fuga veniam, hic delectus. Dolorum, consequatur? Harum, et modi perspiciatis facilis
+        corrupti voluptatum atque architecto perferendis laboriosam, quaerat beatae! Cupiditate inventore quasi nostrum
+        corrupti id ad distinctio similique nemo accusantium ex nobis necessitatibus tempore est velit optio ipsam
+        magnam eaque tenetur, minima totam quae commodi quidem in magni? Molestias, at iure? Placeat aperiam animi
+        eligendi temporibus nostrum, officiis maiores quam asperiores fugiat dicta, nihil facere tenetur. Distinctio,
+        possimus. Praesentium animi tempora eius, accusantium quia deleniti amet impedit asperiores quos labore
+        obcaecati cupiditate debitis sequi quaerat rerum iste iure? Nihil, quos doloremque ab optio beatae maiores
+        officia modi, quam ratione iste voluptates quibusdam blanditiis. Nisi assumenda veritatis accusantium sed non
+        voluptatem, reprehenderit dicta eligendi iusto tempore, nemo reiciendis porro obcaecati minus consequatur atque,
+        aut quo. Saepe aliquam enim molestias mollitia in, dignissimos id laborum maxime veritatis quasi neque nemo quis
+        cum. Aut repellat laboriosam facilis impedit earum accusantium, nihil officiis animi. Atque perferendis natus
+        nobis animi, aliquid id dolor at sed nihil illo, sapiente molestiae aliquam vel possimus qui quod accusamus
+        facere rem, necessitatibus quibusdam. Ut perspiciatis nostrum perferendis ducimus, consequatur voluptas
+        excepturi doloremque impedit vero reprehenderit dicta quasi adipisci provident nesciunt error, sapiente ad
+        omnis. Repellat ad officiis suscipit aspernatur consequatur ab nisi ipsa fugiat quas sint temporibus amet
+        quibusdam fugit hic, praesentium soluta. lorem1000
+    </div>
+    <div class="__parent">
+        <div class="__loader">
+            Loading..............................................
+        </div>
+        <div class="__result">
+            <input type="text" value="TTTTTTTTTTTTTTEZT">
+        </div>
+    </div>
+    <div class="__parent">
+        <div class="__loader">
+            Loading..............................................
+        </div>
+        <div class="__result">
+            <input type="text" value="TTTTTTTTTTTTTTEZT">
+        </div>
+    </div>
+    <script src="observer.js"></script>
+    <script>
+        const parent = document.querySelectorAll('.__parent');
+
+        const o = new Observer(parent, (e) => {
+            const loader = e.querySelector('.__loader');
+            const result = e.querySelector('.__result');
+            loader.style.display = 'block';
+            result.style.display = 'none';
+            setTimeout(() => {
+                loader.style.display = 'none';
+                result.style.display = 'block';
+            }, 1000);
+        });
+
+        document.querySelector('.disconnect').addEventListener('click', () => {
+            o.stop();
+        });
+
+        document.querySelector('.connect').addEventListener('click', () => {
+            o.start();
+        });
+
+
+    </script>
+</body>
+
+</html>

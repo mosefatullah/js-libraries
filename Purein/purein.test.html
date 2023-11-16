@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="purein-1.2.js"></script>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" width="200" height="200" style="border:1px solid #d3d3d3;">
+        Your browser does not support the HTML canvas tag.</canvas>
+
+    <style>
+        .highlight {
+            width: 400px;
+            height: 400px;
+            background-color: rgba(102, 119, 85, 0.1411);
+        }
+
+        .div1 {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+
+        #div1 {
+            position: fixed;
+            z-index: 100000000000000000000;
+            border: 2px solid #675;
+            background-color: rgba(102, 119, 85, 0.1411);
+            border-radius: .124rem;
+        }
+    </style>
+    <div id="div1" hidden></div>
+
+    <div class="div1"></div>
+    <div class="div1"></div>
+    <div class="div1">
+        <img id="drag1" src="https://www.w3schools.com/html/img_logo.gif" width="336" height="69">
+    </div>
+
+    <script>
+        new Purein('').select({
+            custom: true,
+            onsize: function (x, y, w, h) {
+                if (w >= 100 && h >= 100) {
+                    const div = document.getElementById('div1');
+                    div.hidden = 0;
+                    div.style.left = x + 'px';
+                    div.style.top = y + 'px';
+                    div.style.width = w + 'px';
+                    div.style.height = h + 'px';
+
+                }
+            },
+            onmouse: function (u) {}
+        });
+        new Purein(['#drag1', ['.div1']]).drop({
+            highlight: true,
+            transfer: true
+        });
+        /*let line = function (x, y, size, t) {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            ctx.beginPath();
+            if (typeof x === "number" && typeof y === "number") ctx.moveTo(x, y); // x, y : start
+            if (typeof size === "object" && size instanceof Array) {
+                for (let i = 0; i < size.length; i++) {
+                    if (typeof size[i] === "object" && size[i] instanceof Array && typeof size[i][0] === "number" &&
+                        typeof size[i][1] === "number") {
+                        ctx.lineTo(size[i][0], size[i][1]); // x, y : end
+                    }
+                }
+            }
+            if (t && t == true) ctx.fill();
+            else ctx.stroke();
+        }
+
+        let circle = function (size, t) {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            if (typeof size === "object" && size instanceof Array) {
+                for (let i = 0; i < size.length; i++) {
+                    if (typeof size[i] === "object" && size[i] instanceof Array && typeof size[i][0] === "number" &&
+                        typeof size[i][1] === "number" && typeof size[i][2] === "number" &&
+                        typeof size[i][3] === "number" && typeof size[i][4] === "number") {
+                        ctx.beginPath();
+                        ctx.arc(size[i][0], size[i][1], size[i][2], size[i][3], size[i][4]); // x, y, r, start, end
+                        if (t && t == true) ctx.fill();
+                        else ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        let text = function (size) {
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            if (typeof size === "object" && size instanceof Array) {
+                for (let i = 0; i < size.length; i++) {
+                    if (typeof size[i] === "object" && size[i] instanceof Array && typeof size[i][0] === "string" &&
+                        typeof size[i][1] === "number" && typeof size[i][2] === "string" &&
+                        typeof size[i][3] === "number" && typeof size[i][4] === "number") {
+                        ctx.font = size[i][1] + "px " + size[i][2];
+                        ctx.fillText(size[i][0], size[i][3], size[i][4]);
+                    }
+                }
+            }
+        }
+
+        line(0, 10, [
+            [200, 50]
+        ]);
+
+        circle([
+            [150, 50, 50, 0, 2 * 3.1416],
+            [16, 50, 30, 0, 2 * 3.1416]
+        ]);
+
+        text([
+            ["WELCOME", 20, "Arial", 50, 90]
+        ])*/
+
+        //
+        /*
+                var p = new Purein("#myCanvas");
+                var k = {
+                    alpha: 0.2,
+                    rotate: 0.1,
+                    stroke: 'gradient',
+                    gradient: [
+                        ["0", " magenta"],
+                        ["0.5", "blue"],
+                        ["1.0", "red"]
+                    ],
+                    fill: 'gradient',
+                    shadow: ['red', 30]
+                };
+
+                //
+
+                p.canvas.line({
+                    start: [50, 40],
+                    end: [
+                        [50, 150],
+                        [130, 100]
+                    ],
+                    width: 10,
+                    option: k
+                });
+
+                //
+
+                p.canvas.rect({
+                    start: [
+                        [30, 40]
+                    ],
+                    end: [
+                        [20, 100]
+                    ],
+                    width: 10,
+                    option: k
+                });
+
+                // 
+
+                p.canvas.circle({
+                    xyr: [
+                        [100, 90, 50]
+                    ],
+                    start: [0],
+                    end: [2 * Math.PI],
+                    option: k
+                });
+
+                //
+
+                p.canvas.text({
+                    value: "Hello World!",
+                    size: 30,
+                    font: "Arial",
+                    xy: [20, 20]
+                })
+
+                console.log(p.canvas.url());
+
+
+                new Purein().device(function (a) {
+                    alert(a.OS + ": " + a.browser);
+                    console.log(a.dataOS,a.dataBrowser)
+                });
+                */
+        new Purein().battery(function (k) {
+            console.log(k);
+        })
+    </script>
+    <script>
+        /*
+        Android
+            Android (2008)
+            Linux
+
+        Apple
+            iPhone (2007)
+            iPod (2007)
+            iPad (2010)
+            iPhone Simulator: simulator shipped with Xcode
+            iPod Simulator: simulator shipped with Xcode
+            iPad Simulator: simulator shipped with Xcode
+            Macintosh
+            MacIntel: Intel processor (2005)
+            MacPPC: PowerPC processor
+            Mac68K: 68000 processor
+            Pike v7.6 release 92: Opera Mini 5 on any iPhone (2009)
+            Pike v7.8 release 517: Opera Mini 7 on any iPhone (2012)
+
+        BlackBerry
+            BlackBerry (2003)
+
+        FreeBSD
+            FreeBSD
+            FreeBSD i386: x86 (IA-32) processor
+            FreeBSD amd64: AMD x86-64 processor
+
+        Linux
+            Linux
+            Linux aarch64
+            Linux armv5tejl
+            Linux armv6l
+            Linux armv7l
+            Linux armv8l
+            Linux i686
+            Linux i686 on x86_64
+            Linux i686 X11: based on X11 Window System
+            Linux MSM8960_v3.2.1.1_N_R069_Rev:18: Sony Xperia V
+            Linux ppc64
+            Linux x86_64
+            Linux x86_64 X11: based on X11 Window System
+
+        Microsoft
+            OS/2 (1994†)
+            Pocket PC
+            Windows
+            Win16: Windows 3.1x (1992†)
+            Win32: Windows 95 and up
+            WinCE
+
+        Mozilla (Firefox OS)
+            KaiOS (based on Firefox)
+
+        Nintendo
+            New Nintendo 3DS (2014)
+            Nintendo DSi (2008)
+            Nintendo 3DS (2011)
+            Nintendo Wii (2006)
+            Nintendo WiiU (2012)
+
+        OpenBSD
+            OpenBSD amd64
+
+        Symbian / S40
+            Nokia_Series_40 (1999†)
+            S60 (2002†)
+            Symbian: Opera on Symbian
+            Symbian OS
+
+        Palm
+            PalmOS (1996)
+            webOS (2009)
+
+        Solaris
+            SunOS
+            SunOS i86pc
+            SunOS sun4u: SPARC processor
+
+        Sony
+            PLAYSTATION 3 (2006)
+            PlayStation 4 (2013)
+            PSP: PlayStation Portable (2004)
+
+        Various
+            HP-UX: Hewlett-Packard UniX
+            masking-agent: value changes to this when using Masking Agent for Firefox
+            WebTV OS
+            X11: X11 Window System
+
+        */
+
+        /**
+         * d = domain
+         * a = argument
+         * c = clone argument
+         * vn = n'variable
+         * w = window object
+         * x = js api
+         **/
+    </script>
+
+
+    <form name="uploadForm">
+        <div>
+            <input id="uploadInput" type="file" name="myFiles" multiple>
+            selected files: <span id="fileNum">0</span>;
+            total size: <span id="fileSize">0</span>
+        </div>
+        <div><input type="submit" value="Send file"></div>
+    </form>
+
+    <script>
+        new Purein("#uploadInput").file(function (k) {
+            console.log(k);
+            for (let i = 0; i < k.src.length; i++) {
+                let r = document.createElement("img");
+                r.src = k.src[i];
+                document.body.appendChild(r);
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>
